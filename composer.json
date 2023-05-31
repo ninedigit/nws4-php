@@ -1,0 +1,43 @@
+{
+    "name": "ninedigit/nws4-php",
+    "type": "library",
+    "version": "0.0.1",
+    "description": "NWS4 HMAC Authentication",
+    "homepage": "https://github.com/ninedigit/nws4-php",
+    "keywords": ["hmac", "api", "http", "authentication"],
+    "authors": [{
+        "name": "Tomáš Peťovský",
+        "email": "tomas.petovsky@ninedigit.sk",
+        "homepage": "http://www.ninedigit.sk"
+    }],
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Acme\\": "src/",
+            "NineDigit\\NWS4\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NineDigit\\NWS4\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": ">=7.4",
+        "guzzlehttp/guzzle": "~6.0"
+    },
+    "require-dev": {
+        "phpcompatibility/php-compatibility": "*",
+        "phpunit/phpunit": "^9.5"
+    },
+    "config": {
+        "vendor-dir": "vendor",
+        "platform": {
+            "php": "7.4.0"
+        }
+    },
+    "scripts": {
+        "post-install-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths vendor/phpcompatibility/php-compatibility",
+        "post-update-cmd" : "\"vendor/bin/phpcs\" --config-set installed_paths vendor/phpcompatibility/php-compatibility"
+    }
+}
