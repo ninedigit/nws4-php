@@ -2,9 +2,9 @@
 
 namespace NineDigit\NWS4\Tests;
 
-use PHPUnit\Framework\TestCase;
 use NineDigit\NWS4\HttpRequestMessage;
 use NineDigit\NWS4\HttpRequestMessageBuilder;
+use PHPUnit\Framework\TestCase;
 
 final class HttpRequestMessageBuilderTest extends TestCase {
     public function testFromHttpRequestCreatesCorrectRequest() {

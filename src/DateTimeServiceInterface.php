@@ -2,8 +2,9 @@
 
 namespace NineDigit\NWS4;
 
-interface DateTimeServiceInterface {
-  public function getNowUtc(): \DateTime;
+interface DateTimeServiceInterface
+{
+    public function getNowUtc(): \DateTime;
 }
 
 ?>

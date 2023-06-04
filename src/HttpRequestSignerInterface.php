@@ -2,7 +2,8 @@
 
 namespace NineDigit\NWS4;
 
-interface HttpRequestSignerInterface {
+interface HttpRequestSignerInterface
+{
     public function sign(HttpRequestMessage $request);
 }
 
