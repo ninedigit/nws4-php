@@ -21,7 +21,7 @@ final class HttpResponseMessage
     public function ensureSuccessStatusCode()
     {
         $success = $this->isSuccessStatusCode();
-        if (!success) {
+        if (!$success) {
             $statusCode = $this->statusCode;
             throw new \Exception("Response '{$statusCode}' does not indicate success.");
         }
