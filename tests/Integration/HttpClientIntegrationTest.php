@@ -7,9 +7,7 @@ use NineDigit\NWS4\HttpClientOptions;
 use NineDigit\NWS4\HttpMethod;
 use NineDigit\NWS4\HttpRequestMessage;
 use NineDigit\NWS4\HttpResponseMessage;
-
 use PHPUnit\Framework\TestCase;
-use \Error;
 
 
 final class HttpClientIntegrationTest extends TestCase {
@@ -296,5 +294,3 @@ final class HttpClientIntegrationTest extends TestCase {
     //     $this->assertNotEquals(RegistrationState::FAILED, $receiptRegistration->state);
     // }
 }
-
-?>

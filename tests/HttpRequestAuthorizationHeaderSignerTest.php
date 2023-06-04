@@ -2,10 +2,10 @@
 
 namespace NineDigit\NWS4\Tests;
 
-use PHPUnit\Framework\TestCase;
-use NineDigit\NWS4\HttpRequestMessage;
 use NineDigit\NWS4\DateTimeServiceInterface;
 use NineDigit\NWS4\HttpRequestAuthorizationHeaderSigner;
+use NineDigit\NWS4\HttpRequestMessage;
+use PHPUnit\Framework\TestCase;
 
 class StaticDateTimeService implements DateTimeServiceInterface {
     private $dateTime;
@@ -66,4 +66,3 @@ final class HttpRequestAuthorizationHeaderSignerTest extends TestCase {
     }
 }
 
-?>

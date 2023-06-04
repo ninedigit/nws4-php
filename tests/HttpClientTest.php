@@ -2,13 +2,10 @@
 
 namespace NineDigit\NWS4\Tests;
 
-use PHPUnit\Framework\TestCase;
+use NineDigit\NWS4\ApiRequest;
 use NineDigit\NWS4\HttpClient;
 use NineDigit\NWS4\HttpClientOptions;
-use NineDigit\NWS4\HttpMethod;
-use NineDigit\NWS4\ApiRequest;
-
-use NineDigit\NWS4\Tests\DateTimeHelper;
+use PHPUnit\Framework\TestCase;
 
 
 final class HttpClientTest extends TestCase {
@@ -56,4 +53,3 @@ final class HttpClientTest extends TestCase {
     // }
 }
 
-?>
