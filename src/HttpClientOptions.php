@@ -78,8 +78,7 @@ class HttpClientOptions
             $proxyUrl = $data['proxyUrl'];
         }
 
-        $options = new HttpClientOptions($publicKey, $privateKey, $url, $defaultHeaders, $proxyUrl);
-        return $options;
+        return new HttpClientOptions($publicKey, $privateKey, $url, $defaultHeaders, $proxyUrl);
     }
 
     // public function save(string $filename): void {

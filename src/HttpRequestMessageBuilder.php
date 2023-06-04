@@ -7,7 +7,7 @@ final class HttpRequestMessageBuilder
     private HttpRequestHeadersBuilder $headersBuilder;
     private string $method;
     private string $url;
-    private string $body = '';
+    private string $body;
 
     public function __construct(string $method, string $url, array $defaultHeaders = [])
     {
@@ -17,7 +17,7 @@ final class HttpRequestMessageBuilder
         $this->body = '';
     }
 
-    function withBody(?string $body): HttpRequestMessageBuilder
+    function withBody(string|null $body): HttpRequestMessageBuilder
     {
         $this->body = $body;
         return $this;
@@ -36,15 +36,14 @@ final class HttpRequestMessageBuilder
         } else {
             throw new \InvalidArgumentException("Expecting array or callable as an argument.");
         }
+
         return $this;
     }
 
     function build(): HttpRequestMessage
     {
         $headers = $this->headersBuilder->build();
-        $httpRequest = new HttpRequestMessage($this->method, $this->url, $headers, $this->body);
-
-        return $httpRequest;
+        return new HttpRequestMessage($this->method, $this->url, $headers, $this->body);
     }
 
     public static function createGet(string $url, array $headers = []): HttpRequestMessageBuilder

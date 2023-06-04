@@ -53,7 +53,7 @@ final class HttpClient implements HttpClientInterface
         }
 
         $body = $request->body;
-        $headers = array_merge($this->defaultHttpHeaders, $request->headers);
+        $headers = [...$this->defaultHttpHeaders, ...$request->headers];
         $httpRequestMessage = new HttpRequestMessage($request->method, $url, $headers, $body);
 
         if ($sign === true) {
@@ -96,7 +96,7 @@ final class HttpClient implements HttpClientInterface
         return $response;
     }
 
-    private function signRequestMessage(HttpRequestMessage $request)
+    private function signRequestMessage(HttpRequestMessage $request): void
     {
         $this->httpRequestSigner->sign($request);
     }

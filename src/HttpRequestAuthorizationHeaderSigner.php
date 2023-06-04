@@ -83,7 +83,7 @@ final class HttpRequestAuthorizationHeaderSigner implements HttpRequestSignerInt
         }
 
         $host = $urlParts['host'];
-        $port = isset($urlParts['port']) ? $urlParts['port'] : '';
+        $port = $urlParts['port'] ?? '';
 
         if (!empty($port) && $port !== "80" && $port !== "443") {
             $host .= ':' . $urlParts['port'];
@@ -104,12 +104,9 @@ final class HttpRequestAuthorizationHeaderSigner implements HttpRequestSignerInt
             return self::stringCompare($a, $b, false);
         });
 
-        $headersToSignLowercase = array_map(function ($headerName) {
-            return strtolower($headerName);
-        }, $sortedHeaderKeys);
+        $headersToSignLowercase = array_map('strtolower', $sortedHeaderKeys);
 
-        $result = implode(';', $headersToSignLowercase);
-        return $result;
+        return implode(';', $headersToSignLowercase);
     }
 
     /**
@@ -143,17 +140,14 @@ final class HttpRequestAuthorizationHeaderSigner implements HttpRequestSignerInt
             $serializedHeaders[] = $key . ":" . trim(preg_replace('/\s+/', ' ', $value));
         }
 
-        $result = implode("\n", $serializedHeaders);
-
-        return $result;
+        return implode("\n", $serializedHeaders);
     }
 
     private static function canonicalizeUrlQuery(string $url): string
     {
         $queryParams = self::getQueryParameters($url);
-        $result = self::canonicalizeQueryParameters($queryParams);
 
-        return $result;
+        return self::canonicalizeQueryParameters($queryParams);
     }
 
     private static function getQueryParameters(string $url): array
@@ -190,8 +184,7 @@ final class HttpRequestAuthorizationHeaderSigner implements HttpRequestSignerInt
             $keyValuePairs[] = rawurlencode($key) . '=' . rawurlencode($value);
         }
 
-        $result = implode('&', $keyValuePairs);
-        return $result;
+        return implode('&', $keyValuePairs);
     }
 
     private static function stringCompare(string $first, string $second, $isCaseSensitive = true)
@@ -212,9 +205,8 @@ final class HttpRequestAuthorizationHeaderSigner implements HttpRequestSignerInt
         }
 
         $encodedUrlPath = rawurlencode(ltrim($urlPath, '/'));
-        $result = '/' . str_replace('%2F', '/', $encodedUrlPath);
 
-        return $result;
+        return '/' . str_replace('%2F', '/', $encodedUrlPath);
     }
 
     private static function canonicalizeRequest(
@@ -235,9 +227,7 @@ final class HttpRequestAuthorizationHeaderSigner implements HttpRequestSignerInt
             $bodyHash
         ];
 
-        $result = implode("\n", $array);
-
-        return $result;
+        return implode("\n", $array);
     }
 
     private static function canonicalizeStringToSign(string $dateTimeStamp, string $publicKey, string $canonicalRequest): string
@@ -248,6 +238,7 @@ final class HttpRequestAuthorizationHeaderSigner implements HttpRequestSignerInt
             $publicKey,
             hash('sha256', $canonicalRequest),
         ];
+
         return implode("\n", $array);
     }
 
@@ -255,8 +246,8 @@ final class HttpRequestAuthorizationHeaderSigner implements HttpRequestSignerInt
     {
         $key = 'NWS4' . $privateKey;
         $signingKey = hash_hmac('SHA256', $utcDateFormat, $key, true);
-        $signature = hash_hmac('SHA256', $data, $signingKey);
-        return $signature;
+
+        return hash_hmac('SHA256', $data, $signingKey);
     }
 
     private static function createAuthorizationHeader(string $publicKey, string $signedHeaders, string $timestamp, string $signature): string
@@ -270,7 +261,7 @@ final class HttpRequestAuthorizationHeaderSigner implements HttpRequestSignerInt
             'Signature=' . $signature
         ];
         $authorizationEnc = rawurlencode(implode(',', $authorization));
-        $authorizationHeader = 'NWS4-HMAC-SHA256 ' . $authorizationEnc;
-        return $authorizationHeader;
+
+        return 'NWS4-HMAC-SHA256 ' . $authorizationEnc;
     }
 }

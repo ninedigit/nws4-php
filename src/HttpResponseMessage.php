@@ -2,11 +2,13 @@
 
 namespace NineDigit\NWS4;
 
+use Exception;
+
 final class HttpResponseMessage
 {
     public int $statusCode;
     public array $headers;
-    public ?string $body;
+    public string|null $body;
 
     public function __construct(int $statusCode = 204, array $headers = [], ?string $body = null)
     {
@@ -14,16 +16,15 @@ final class HttpResponseMessage
 
     public function isSuccessStatusCode(): bool
     {
-        $success = $this->statusCode >= 200 && $this->statusCode <= 299;
-        return $success;
+        return $this->statusCode >= 200 && $this->statusCode <= 299;
     }
 
-    public function ensureSuccessStatusCode()
+    public function ensureSuccessStatusCode(): void
     {
         $success = $this->isSuccessStatusCode();
         if (!$success) {
             $statusCode = $this->statusCode;
-            throw new \Exception("Response '{$statusCode}' does not indicate success.");
+            throw new Exception("Response '{$statusCode}' does not indicate success.");
         }
     }
 }

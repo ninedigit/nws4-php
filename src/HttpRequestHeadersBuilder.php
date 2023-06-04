@@ -16,12 +16,14 @@ final class HttpRequestHeadersBuilder
         foreach ($headers as $key => $value) {
             $this->headers[$key] = $value;
         }
+
         return $this;
     }
 
     public function accept(string $value): HttpRequestHeadersBuilder
     {
         $this->headers['Accept'] = $value;
+
         return $this;
     }
 
