@@ -107,5 +107,3 @@ final class HttpRequestMessageBuilderTest extends TestCase {
         ), $request->headers);
     }
 }
-
-?>

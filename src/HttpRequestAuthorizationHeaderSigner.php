@@ -274,5 +274,3 @@ final class HttpRequestAuthorizationHeaderSigner implements HttpRequestSignerInt
         return $authorizationHeader;
     }
 }
-
-?>

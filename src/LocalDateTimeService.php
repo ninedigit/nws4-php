@@ -9,5 +9,3 @@ class LocalDateTimeService implements DateTimeServiceInterface
         return \DateTime::createFromFormat("U.u", microtime(TRUE), new \DateTimeZone("UTC"));
     }
 }
-
-?>

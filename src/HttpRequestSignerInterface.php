@@ -6,5 +6,3 @@ interface HttpRequestSignerInterface
 {
     public function sign(HttpRequestMessage $request);
 }
-
-?>

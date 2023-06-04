@@ -294,5 +294,3 @@ final class HttpClientIntegrationTest extends TestCase {
     //     $this->assertNotEquals(RegistrationState::FAILED, $receiptRegistration->state);
     // }
 }
-
-?>

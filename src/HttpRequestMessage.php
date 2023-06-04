@@ -17,5 +17,3 @@ final class HttpRequestMessage
         $this->body = $body;
     }
 }
-
-?>

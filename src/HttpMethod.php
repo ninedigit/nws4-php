@@ -16,4 +16,3 @@ final class HttpMethod
     public const TRACE = "TRACE";
 }
 
-?>

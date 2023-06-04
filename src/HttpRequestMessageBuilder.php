@@ -76,5 +76,3 @@ final class HttpRequestMessageBuilder
         return $builder;
     }
 }
-
-?>
