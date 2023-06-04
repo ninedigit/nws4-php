@@ -6,5 +6,3 @@ interface DateTimeServiceInterface
 {
     public function getNowUtc(): \DateTime;
 }
-
-?>
