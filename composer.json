@@ -1,7 +1,7 @@
 {
     "name": "ninedigit/nws4-php",
     "type": "library",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "NWS4 HMAC Authentication",
     "homepage": "https://github.com/ninedigit/nws4-php",
     "keywords": ["hmac", "api", "http", "authentication"],
