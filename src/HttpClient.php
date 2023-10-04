@@ -74,7 +74,7 @@ final class HttpClient implements HttpClientInterface
                 $request->headers,
                 $request->body);
 
-            $guzzleResponse = $this->client->send($guzzleRequest, ['debug' => true]);
+            $guzzleResponse = $this->client->send($guzzleRequest);
             $body = $guzzleResponse->getBody();
         } catch (RequestException $ex) {
             if ($ex->hasResponse()) {
