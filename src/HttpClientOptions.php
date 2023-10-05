@@ -34,12 +34,20 @@ class HttpClientOptions
      */
     public ?HttpRequestSignerInterface $httpRequestSigner = null;
 
+    /* Indikuje aktívnosť vývojárského režímu, v ktorom
+     * je napr. možné vidieť záznamy vykonaných HTTP požiadaviek.
+     *
+     * Viďte https://docs.guzzlephp.org/en/stable/request-options.html#debug
+     */
+    public bool $debug = false;
+
     public function __construct(
         string  $publicKey,
         string  $privateKey,
         string  $url,
         ?array  $defaultHeaders = null,
-        ?string $proxyUrl = null
+        ?string $proxyUrl = null,
+        ?bool $debug = false
     )
     {
         $this->publicKey = $publicKey;
@@ -47,6 +55,7 @@ class HttpClientOptions
         $this->url = $url;
         $this->proxyUrl = $proxyUrl;
         $this->defaultHeaders = $defaultHeaders ?? [];
+        $this->debug = $debug;
     }
 
     public static function load($filenameOrData): HttpClientOptions
@@ -66,7 +75,7 @@ class HttpClientOptions
         $privateKey = $data['privateKey'];
         $url = $data['url'];
 
-        $tenantId = null;
+        $debug = false;
         $defaultHeaders = null;
         $proxyUrl = null;
 
@@ -78,7 +87,11 @@ class HttpClientOptions
             $proxyUrl = $data['proxyUrl'];
         }
 
-        return new HttpClientOptions($publicKey, $privateKey, $url, $defaultHeaders, $proxyUrl);
+        if (array_key_exists('debug', $data)) {
+            $debug = $data['debug'];
+        }
+
+        return new HttpClientOptions($publicKey, $privateKey, $url, $defaultHeaders, $proxyUrl, $debug);
     }
 
     // public function save(string $filename): void {

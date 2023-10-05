@@ -25,7 +25,7 @@ final class HttpRequestMessageBuilder
 
     /**
      * Metóda na nastavenie hlavičiek
-     * @param $headersOrCallable Asociatívne pole hlavičiek alebo vyvolateľná funkcia preberajúca HttpRequestHeadersBuilder.
+     * @param callable|array $headersOrCallable Asociatívne pole hlavičiek alebo vyvolateľná funkcia preberajúca HttpRequestHeadersBuilder.
      */
     function withHeaders($headersOrCallable): HttpRequestMessageBuilder
     {

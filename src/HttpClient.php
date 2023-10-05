@@ -5,19 +5,19 @@ namespace NineDigit\NWS4;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
-use NineDigit\NWS4\SerializerInterface;
-
 
 final class HttpClient implements HttpClientInterface
 {
     private HttpRequestSignerInterface $httpRequestSigner;
-    private SerializerInterface $serializer;
     private array $defaultHttpHeaders;
     private $client;
     private $url;
 
+    private $debug;
+
     public function __construct(HttpClientOptions $options)
     {
+        $this->debug = $options->debug;
         $this->url = $options->url;
 
         $guzzleHttpClientConfig = [
@@ -74,7 +74,7 @@ final class HttpClient implements HttpClientInterface
                 $request->headers,
                 $request->body);
 
-            $guzzleResponse = $this->client->send($guzzleRequest, ['debug' => true]);
+            $guzzleResponse = $this->client->send($guzzleRequest, ['debug' => $this->debug]);
             $body = $guzzleResponse->getBody();
         } catch (RequestException $ex) {
             if ($ex->hasResponse()) {
